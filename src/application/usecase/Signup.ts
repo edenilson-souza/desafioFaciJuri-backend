@@ -8,11 +8,11 @@ export default class Signup {
 
     async execute(input: any) {
         const existingAccount = await this.accountRepository.getByEmail(input.email);
-        if (existingAccount) throw new Error("Account already exists");
+        if (existingAccount) throw new Error("Conta já existe");
 
         const account = Account.create(input.name, input.email, input.phone);
         await this.accountRepository.save(account);
-        await this.mailerGateway.send("Welcome", account.getEmail(), "Use this link to confirm your account");
+        await this.mailerGateway.send("Bem vindo!", account.getEmail(), "Use o link para confirmar seu email: ...");
         return {
             accountId: account.accountId
         };
