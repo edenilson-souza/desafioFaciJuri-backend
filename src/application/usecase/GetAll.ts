@@ -1,6 +1,6 @@
 import AccountRepository from "../../infra/repository/AccountRepository";
 
-export default class GetAllAccount {
+export default class GetAllUseCase {
     constructor(readonly accountRepository: AccountRepository) {}
 
     async execute(page: number, limit: number) {
