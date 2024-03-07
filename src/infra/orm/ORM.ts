@@ -15,18 +15,44 @@ export default class ORM {
     async findBy(model: any, field: string, value: string) {
         const query = `SELECT * FROM ${model.prototype.schema}.${model.prototype.table} WHERE ${field} = $1`;
         const [data] = await this.connection.query(query, [value]);
+        if (!data) return;
         const obj = new model();
         for (const column of model.prototype.columns) {
             obj[column.property] = data[column.column];
         }
         return obj;
     }
+
+    async findAll(model: any, page: number, limit: number) {
+        const query = `SELECT * FROM ${model.prototype.schema}.${model.prototype.table} LIMIT $1 OFFSET $2`;
+        const data = await this.connection.query(query, [limit, (page - 1) * limit]);
+        return data.map((row: any) => {
+            const obj = new model();
+            for (const column of model.prototype.columns) {
+                obj[column.property] = row[column.column];
+            }
+            return obj;
+        });
+    }
+
+    async update(model: any, field: string, value: string, data: any) {
+        const columns = Object.keys(data)
+            .map(column => `${column} = $${column}`)
+            .join(",");
+        const query = `UPDATE ${model.prototype.schema}.${model.prototype.table} SET ${columns} WHERE ${field} = $1`;
+        await this.connection.query(query, [value, ...Object.values(data)]);
+    }
+
+    async delete(model: any, field: string, value: string) {
+        const query = `DELETE FROM ${model.prototype.schema}.${model.prototype.table} WHERE ${field} = $1`;
+        await this.connection.query(query, [value]);
+    }
 }
 
 export class Model {
     declare schema: string;
     declare table: string;
-    declare columns: { property: string; column: string; pk: boolean };
+    declare columns: { property: string; column: string; pk: boolean }[];
     [key: string]: any;
 }
 
