@@ -35,12 +35,3 @@ export function inject(name: string) {
         );
     };
 }
-// export function inject(name: string) {
-//     return function (target: any, propertyKey: string) {
-//        return Object.defineProperty(target, propertyKey, {
-//             get: function () {
-//                 return Registry.getInstance().inject(name);
-//             }
-//         });
-//     };
-// }
