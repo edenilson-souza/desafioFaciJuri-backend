@@ -1,26 +1,30 @@
-import GetAccount from "../../application/usecase/GetAccount";
-import GetAllAccount from "../../application/usecase/GetAllAccount";
-import Signup from "../../application/usecase/Signup";
+import DeleteUseCase from "../../application/usecase/Delete";
+import GetAllUseCase from "../../application/usecase/GetAll";
+import GetByIDUseCase from "../../application/usecase/GetByID";
+import SignupUseCase from "../../application/usecase/Signup";
 import { PgPromiseAdapter } from "../database/DatabaseConnection";
 import { MailerGatewayConsole } from "../gateway/MailerGateway";
-import { AccountRepositoryDatabase } from "../repository/AccountRepository";
+import { AccountRepositoryDatabase, AccountRepositoryORM } from "../repository/AccountRepository";
 import Registry from "./Registry";
 
 export const DependencyInjection = (registry: Registry) => {
     const connection = new PgPromiseAdapter();
 
     //Repositories
-    const accountRepository = new AccountRepositoryDatabase(connection);
+    const accountRepository = new AccountRepositoryDatabase(connection); //Usando SQL
+    // const accountRepository = new AccountRepositoryORM(connection); //Usando ORM
 
     //Gateways
     const mailerGateway = new MailerGatewayConsole();
 
     //Use Cases
-    const signup = new Signup(accountRepository, mailerGateway);
-    const getAccount = new GetAccount(accountRepository);
-    const getAllAccount = new GetAllAccount(accountRepository);
+    const createAccount = new SignupUseCase(accountRepository, mailerGateway);
+    const getByIDAccount = new GetByIDUseCase(accountRepository);
+    const getAllAccount = new GetAllUseCase(accountRepository);
+    const deleteAccount = new DeleteUseCase(accountRepository);
 
-    registry.register("signup", signup);
-    registry.register("getAccount", getAccount);
+    registry.register("signup", createAccount);
+    registry.register("getAccount", getByIDAccount);
     registry.register("getAllAccount", getAllAccount);
+    registry.register("deleteAccount", deleteAccount);
 };

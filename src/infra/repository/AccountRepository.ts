@@ -11,9 +11,10 @@ export default interface AccountRepository {
     getById(accountId: string): Promise<Account | undefined>;
     getByEmail(email: string): Promise<Account | undefined>;
     getByField(field: string, value: string): Promise<Account | undefined>;
+    delete(account: Account): Promise<void>;
 }
 
-// Adapter Database
+// Adapter SQL
 export class AccountRepositoryDatabase implements AccountRepository {
     constructor(readonly connection: DatabaseConnection) {}
 
@@ -47,8 +48,13 @@ export class AccountRepositoryDatabase implements AccountRepository {
         if (!account) return;
         return Account.restore(account.account_id, account.name, account.email, account.phone);
     }
+
+    async delete(account: Account) {
+        await this.connection.query("DELETE FROM desfacijuri.account WHERE account_id = $1", [account.accountId]);
+    }
 }
 
+// Adapter ORM
 export class AccountRepositoryORM implements AccountRepository {
     orm: ORM;
 
@@ -57,15 +63,17 @@ export class AccountRepositoryORM implements AccountRepository {
     }
 
     async save(account: Account) {
-        await this.orm.save(AccountModel.fromAggregate(account));
+        const accountModel = new AccountModel(account.accountId, account.getName(), account.getEmail(), account.getPhone());
+        await this.orm.save(accountModel);
     }
 
     async getAll(page: number, limit: number): Promise<Account[]> {
-        throw new Error("Method not implemented.");
+        const accounts = await this.orm.findAll(AccountModel, page, limit);
+        return accounts.map((account: any) => account.getAggregate());
     }
 
     async getById(accountId: string) {
-        const account = await this.orm.findBy(AccountModel, "accountId", accountId);
+        const account = await this.orm.findBy(AccountModel, "account_id", accountId);
         if (!account) return;
         const aggregate = account.getAggregate();
         return aggregate;
@@ -83,5 +91,9 @@ export class AccountRepositoryORM implements AccountRepository {
         if (!account) return;
         const aggregate = account.getAggregate();
         return aggregate;
+    }
+
+    async delete(account: Account): Promise<void> {
+        await this.orm.delete(AccountModel, "account_id", account.accountId);
     }
 }

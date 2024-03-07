@@ -23,5 +23,10 @@ export default class MainController {
             const output = await registry.inject("getAccount").execute(params.accountId);
             return output;
         });
+
+        httpServer.register("delete", "/accounts/:accountId", async function (params: any, body: any) {
+            const output = await registry.inject("deleteAccount").execute(params.accountId);
+            return output;
+        });
     }
 }
