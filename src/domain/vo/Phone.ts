@@ -2,7 +2,7 @@ export default class Phone {
     private value: string;
 
     constructor(phone: string) {
-        if (!this.validatePhone(phone)) throw new Error("Invalid phone");
+        if (!this.validatePhone(phone)) throw new Error("Telefone inválido");
         this.value = this.removeNonDigits(phone);
     }
 

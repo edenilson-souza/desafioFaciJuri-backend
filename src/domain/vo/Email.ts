@@ -1,17 +1,16 @@
 export default class Email {
-	private value: string;
+    private value: string;
 
-	constructor (email: string) {
-		if (this.isInvalidEmail(email)) throw new Error("Invalid email");
-		this.value = email;
-	}
+    constructor(email: string) {
+        if (this.isInvalidEmail(email)) throw new Error("Email inválido");
+        this.value = email;
+    }
 
-	private isInvalidEmail (email: string) {
-		return !email.match(/^(.+)@(.+)$/)
-	}
+    private isInvalidEmail(email: string) {
+        return !email.match(/^(.+)@(.+)$/);
+    }
 
-	getValue () {
-		return this.value;
-	}
-
+    getValue() {
+        return this.value;
+    }
 }
