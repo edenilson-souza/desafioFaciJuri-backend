@@ -1,4 +1,5 @@
-//istanbul ignore file
+/* istanbul ignore file */
+
 import DatabaseConnection from "../database/DatabaseConnection";
 
 export default class ORM {
