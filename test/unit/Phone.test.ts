@@ -5,5 +5,5 @@ test.each(["97456321558", "71428793860", "87748248800"])("Deve testar se o telef
 });
 
 test.each(["8774824880", null, undefined, "11111111111"])("Deve testar se o telefone é inválido: %s", function (phone: any) {
-    expect(() => new Phone(phone)).toThrow(new Error("Invalid phone"));
+    expect(() => new Phone(phone)).toThrow(new Error("Telefone inválido"));
 });

@@ -11,7 +11,9 @@ test("Deve criar a conta", async function () {
     const input = {
         name: "Edenilson Souza",
         email: `edenilson.sza${Math.random()}@gmail.com`,
-        phone: "79999889371"
+        phone: "79999889371",
+        cordx: "123",
+        cordy: "123"
     };
     const responseSignup = await axios.post("http://localhost:3001/signup", input, {
         headers: {
@@ -22,7 +24,7 @@ test("Deve criar a conta", async function () {
     expect(outputSignup.accountId).toBeDefined();
     const responseGetAccount = await axios.get(`http://localhost:3001/accounts/${outputSignup.accountId}`);
     const outputGetAccount = responseGetAccount.data;
-    expect(outputGetAccount.name).toBe(input.name);
-    expect(outputGetAccount.email).toBe(input.email);
+    expect(outputGetAccount.name).toBe(input.name.toUpperCase());
+    expect(outputGetAccount.email).toBe(input.email.toLowerCase());
     expect(outputGetAccount.phone).toBe(input.phone);
 });
