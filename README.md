@@ -9,12 +9,12 @@ visando oferecer uma solução robusta e de qualidade.
 
 Este projeto está utilizando as seguintes tecnologias:
 
--   [Node](https://nodejs.org/en)
--   [Express](https://expressjs.com/)
--   [TypeScript](https://www.typescriptlang.org/)
--   [Jest](https://jestjs.io/)
--   [PostgreSQL](https://www.postgresql.org/)
--   [PgPromise](https://vitaly-t.github.io/pg-promise/)
+-   [Node](https://nodejs.org/en) (v18.18.0)
+-   [Express](https://expressjs.com/) (v4.18.2)
+-   [TypeScript](https://www.typescriptlang.org/) (v5.2.2)
+-   [Jest](https://jestjs.io/) (v29.6.4)
+-   [PostgreSQL](https://www.postgresql.org/) (v16.2)
+-   [PgPromise](https://vitaly-t.github.io/pg-promise/) (v11.5.4)
 
 ## Instalação
 
