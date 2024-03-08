@@ -2,30 +2,26 @@ import crypto from "crypto";
 import Name from "../vo/Name";
 import Email from "../vo/Email";
 import Phone from "../vo/Phone";
+import Coord from "../vo/Coord";
 
 // Entity e atua como Raiz do Aggregate (Account<AR>, Name, Email, Phone)
 export default class Account {
     private name: Name;
     private email: Email;
     private phone: Phone;
-    private cordx: string;
-    private cordy: string;
+    private cordx: Coord;
+    private cordy: Coord;
 
     private constructor(readonly accountId: string, name: string, email: string, phone: string, cordx: string, cordy: string) {
         this.name = new Name(name);
         this.email = new Email(email);
         this.phone = new Phone(phone);
-        this.cordx = cordx;
-        this.cordy = cordy;
+        this.cordx = new Coord(cordx);
+        this.cordy = new Coord(cordx);
     }
 
     static create(name: string, email: string, phone: string, cordx: string, cordy: string) {
         const accountId = crypto.randomUUID();
-        if (name === undefined || email === undefined || phone === undefined) throw new Error("Name, Email e Phone são obrigatórios");
-        if (cordx === undefined || cordy === undefined) throw new Error("CordX e CordY são obrigatórios");
-        if (cordx === "" || cordy === "") throw new Error("CordX e CordY são obrigatórios");
-        name = name.toUpperCase();
-        email = email.toLowerCase();
         return new Account(accountId, name, email, phone, cordx, cordy);
     }
 
@@ -51,10 +47,10 @@ export default class Account {
         return this.phone.getValue();
     }
     getCordX() {
-        return this.cordx;
+        return this.cordx.getValue();
     }
     getCordY() {
-        return this.cordy;
+        return this.cordy.getValue();
     }
 
     setName(name: string) {
@@ -64,9 +60,9 @@ export default class Account {
         this.phone = new Phone(phone);
     }
     setCordX(cordx: string) {
-        this.cordx = cordx;
+        this.cordx = new Coord(cordx);
     }
     setCordY(cordy: string) {
-        this.cordy = cordy;
+        this.cordy = new Coord(cordy);
     }
 }

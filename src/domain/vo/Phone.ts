@@ -16,7 +16,7 @@ export default class Phone {
     }
 
     private removeNonDigits(phone: string) {
-        return phone.replace(/\D/g, "");
+        return phone.replace(/\D/g, "").toLowerCase();
     }
 
     private isInvalidLength(phone: string) {

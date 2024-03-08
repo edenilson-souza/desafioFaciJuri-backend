@@ -87,7 +87,7 @@ describe("Account - Validation", () => {
         const cordX = "123";
         const cordY = "123";
 
-        expect(() => Account.create(name, email, phone, cordX, cordY)).toThrow(new Error("Nome inválido"));
+        expect(() => Account.create(name, email, phone, cordX, cordY)).toThrow(new Error("Nome é obrigatório"));
     });
 
     it("should throw an error if name is invalid", () => {
@@ -98,7 +98,18 @@ describe("Account - Validation", () => {
         const cordY = "123";
 
         //@ts-ignore
-        expect(() => Account.create(name, email, phone, cordX, cordY)).toThrow(new Error("Name, Email e Phone são obrigatórios"));
+        expect(() => Account.create(name, email, phone, cordX, cordY)).toThrow(new Error("Nome é obrigatório"));
+    });
+
+    it("should throw an error if name is invalid", () => {
+        const name = "dsadas dasdas";
+        const email = undefined;
+        const phone = "79999889371";
+        const cordX = "123";
+        const cordY = "123";
+
+        //@ts-ignore
+        expect(() => Account.create(name, email, phone, cordX, cordY)).toThrow(new Error("Email é obrigatório"));
     });
 
     it("should throw an error if name is invalid", () => {
@@ -112,7 +123,7 @@ describe("Account - Validation", () => {
     });
 
     it("should throw an error if coords is invalid", () => {
-        const name = "dsadas";
+        const name = "dsadas dasdsa";
         const email = "john@example.com";
         const phone = "79999889371";
         const cordX = "";
@@ -123,7 +134,7 @@ describe("Account - Validation", () => {
     });
 
     it("should throw an error if coords is invalid", () => {
-        const name = "dsadas";
+        const name = "dsadas dsa";
         const email = "john@example.com";
         const phone = "79999889371";
         const cordX = "";

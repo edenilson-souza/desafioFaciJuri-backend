@@ -2,6 +2,7 @@ export default class Email {
     private value: string;
 
     constructor(email: string) {
+        if (!email || email == "") throw new Error("Email é obrigatório");
         if (this.isInvalidEmail(email)) throw new Error("Email inválido");
         this.value = email.toLowerCase();
     }
