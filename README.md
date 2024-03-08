@@ -5,6 +5,8 @@ Este é o repositório do projeto "Desafio Facilita Juridico" versão 1.0.0.
 Este projeto foi desenvolvido com base em boas práticas de engenharia de software, como Clean Code, Clean Architecture, Semantic commits, SOLID, DDD e TDD,
 visando oferecer uma solução robusta e de qualidade.
 
+Video: https://youtu.be/n3WpZcbrX60
+
 ## 🚀 Tecnologias
 
 Este projeto está utilizando as seguintes tecnologias:
