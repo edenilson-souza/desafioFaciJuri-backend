@@ -40,7 +40,7 @@ Insira a senha do banco de dados quando solicitado.
 
 ## Rodando a aplicação
 
-###Compilação
+### Compilação
 
 Para compilar o código TypeScript, utilize o seguinte comando:
 
@@ -48,7 +48,7 @@ Para compilar o código TypeScript, utilize o seguinte comando:
 npm run build
 ```
 
-###Iniciar o servidor
+### Iniciar o servidor
 
 Para iniciar o servidor em ambiente de produção, execute:
 
@@ -56,7 +56,7 @@ Para iniciar o servidor em ambiente de produção, execute:
 npm start
 ```
 
-####Iniciar o servidor em modo de desenvolvimento
+#### Iniciar o servidor em modo de desenvolvimento
 
 Para iniciar o servidor em modo de desenvolvimento com suporte para reinicialização automática após alterações no código, execute:
 
@@ -64,7 +64,7 @@ Para iniciar o servidor em modo de desenvolvimento com suporte para reinicializa
 npm run dev
 ```
 
-##Testes
+## Testes
 
 Para executar os testes, utilize um dos seguintes comandos:
 
