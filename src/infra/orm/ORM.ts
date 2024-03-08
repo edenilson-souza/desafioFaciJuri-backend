@@ -35,12 +35,11 @@ export default class ORM {
         });
     }
 
-    async update(model: any, field: string, value: string, data: any) {
-        const columns = Object.keys(data)
-            .map(column => `${column} = $${column}`)
-            .join(",");
-        const query = `UPDATE ${model.prototype.schema}.${model.prototype.table} SET ${columns} WHERE ${field} = $1`;
-        await this.connection.query(query, [value, ...Object.values(data)]);
+    async update(model: any, field: string, identifier: string, data: any): Promise<void> {
+        const columns = data.columns.map((column: any, index: any) => `${column.column} = $${index + 1}`).join(",");
+        const query = `UPDATE ${model.prototype.schema}.${model.prototype.table} SET ${columns} WHERE ${field} = $${Object.keys(data).length + 1}`;
+        const values = [...Object.values(data), identifier];
+        await this.connection.query(query, values);
     }
 
     async delete(model: any, field: string, value: string) {

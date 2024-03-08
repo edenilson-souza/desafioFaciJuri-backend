@@ -9,22 +9,27 @@ export default class MainController {
     constructor(httpServer: HttpServer) {
         const registry = Registry.getInstance();
 
-        httpServer.register("post", "/signup", async (params: any, body: any) => {
+        httpServer.register("post", "/signup", async ({ body }: any) => {
             const output = await this.signup?.execute(body);
             return output;
         });
 
-        httpServer.register("get", "/accounts/:page/:limit", async function (params: any, body: any) {
-            const output = await registry.inject("getAllAccount").execute(params.page, params.limit);
+        httpServer.register("get", "/accounts/:page/:limit", async function ({ body, params, query }: any) {
+            const output = await registry.inject("getAllAccount").execute(params.page, params.limit, query);
             return output;
         });
 
-        httpServer.register("get", "/accounts/:accountId", async function (params: any, body: any) {
+        httpServer.register("get", "/accounts/:accountId", async function ({ body, params, query }: any) {
             const output = await registry.inject("getAccount").execute(params.accountId);
             return output;
         });
 
-        httpServer.register("delete", "/accounts/:accountId", async function (params: any, body: any) {
+        httpServer.register("put", "/accounts/:accountId", async function ({ body, params, query }: any) {
+            const output = await registry.inject("updateAccount").execute(params.accountId, body);
+            return output;
+        });
+
+        httpServer.register("delete", "/accounts/:accountId", async function ({ body, params, query }: any) {
             const output = await registry.inject("deleteAccount").execute(params.accountId);
             return output;
         });

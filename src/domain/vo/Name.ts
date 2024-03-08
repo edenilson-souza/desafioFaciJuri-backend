@@ -3,7 +3,7 @@ export default class Name {
 
     constructor(name: string) {
         if (this.isInvalidName(name)) throw new Error("Nome inválido");
-        this.value = name;
+        this.value = name.toUpperCase();
     }
 
     private isInvalidName(name: string) {

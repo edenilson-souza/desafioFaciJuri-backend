@@ -1,3 +1,4 @@
+//istanbul ignore file
 import pgp from "pg-promise";
 
 export default interface DatabaseConnection {

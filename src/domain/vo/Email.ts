@@ -3,7 +3,7 @@ export default class Email {
 
     constructor(email: string) {
         if (this.isInvalidEmail(email)) throw new Error("Email inválido");
-        this.value = email;
+        this.value = email.toLowerCase();
     }
 
     private isInvalidEmail(email: string) {
