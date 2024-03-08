@@ -2,7 +2,19 @@
 
 Este é o repositório do projeto "Desafio Facilita Juridico" versão 1.0.0.
 
-Este projeto foi desenvolvido com base em boas práticas de engenharia de software, como Clean Code, Clean Architecture, Semantic commits, SOLID, DDD e TDD, visando oferecer uma solução robusta e de qualidade.
+Este projeto foi desenvolvido com base em boas práticas de engenharia de software, como Clean Code, Clean Architecture, Semantic commits, SOLID, DDD e TDD,
+visando oferecer uma solução robusta e de qualidade.
+
+## 🚀 Tecnologias
+
+Este projeto está utilizando as seguintes tecnologias:
+
+-   [Node](https://nodejs.org/en)
+-   [Express](https://expressjs.com/)
+-   [TypeScript](https://www.typescriptlang.org/)
+-   [Jest](https://jestjs.io/)
+-   [PostgreSQL](https://www.postgresql.org/)
+-   [PgPromise](https://vitaly-t.github.io/pg-promise/)
 
 ## Instalação
 
@@ -73,21 +85,5 @@ npm run test:coverage
 ```
 
 OBS: Para os testes de integração, é necessário que o banco de dados e a aplicação estejam em execução.
-
-##Dependências
-
-```json
-"@types/express": "^4.17.17",
-"@types/jest": "^29.5.4",
-"axios": "^1.5.0",
-"dotenv": "^16.4.5",
-"express": "^4.18.2",
-"jest": "^29.6.4",
-"nodemon": "^3.0.1",
-"pg-promise": "^11.5.4",
-"ts-jest": "^29.1.1",
-"ts-node": "^10.9.1",
-"typescript": "^5.2.2"
-```
 
 Isso deve funcionar corretamente. Se precisar de mais alguma coisa, estou por aqui.
