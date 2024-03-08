@@ -33,5 +33,10 @@ export default class MainController {
             const output = await registry.inject("deleteAccount").execute(params.accountId);
             return output;
         });
+
+        httpServer.register("get", "/rotas", async function ({ body, params, query }: any) {
+            const output = await registry.inject("rotas").execute();
+            return output;
+        });
     }
 }

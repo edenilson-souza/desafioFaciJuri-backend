@@ -1,6 +1,7 @@
 import DeleteUseCase from "../../application/usecase/Delete";
 import GetAllUseCase from "../../application/usecase/GetAll";
 import GetByIDUseCase from "../../application/usecase/GetByID";
+import RotasUseCase from "../../application/usecase/Rotas";
 import SignupUseCase from "../../application/usecase/Signup";
 import UpdateUseCase from "../../application/usecase/Update";
 import { PgPromiseAdapter } from "../database/DatabaseConnection";
@@ -24,10 +25,12 @@ export const DependencyInjection = (registry: Registry) => {
     const getAllAccount = new GetAllUseCase(accountRepository);
     const updateAccount = new UpdateUseCase(accountRepository);
     const deleteAccount = new DeleteUseCase(accountRepository);
+    const rotasUseCase = new RotasUseCase(accountRepository);
 
     registry.register("signup", createAccount);
     registry.register("getAccount", getByIDAccount);
     registry.register("getAllAccount", getAllAccount);
     registry.register("updateAccount", updateAccount);
     registry.register("deleteAccount", deleteAccount);
+    registry.register("rotas", rotasUseCase);
 };
