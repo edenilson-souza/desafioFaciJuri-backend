@@ -17,7 +17,7 @@ export default class Account {
         this.email = new Email(email);
         this.phone = new Phone(phone);
         this.cordx = new Coord(cordx);
-        this.cordy = new Coord(cordx);
+        this.cordy = new Coord(cordy);
     }
 
     static create(name: string, email: string, phone: string, cordx: string, cordy: string) {
