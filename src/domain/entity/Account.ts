@@ -33,8 +33,8 @@ export default class Account {
         if (data.name) this.name = new Name(data.name);
         if (data.email) this.email = new Email(data.email);
         if (data.phone) this.phone = new Phone(data.phone);
-        if (data.cordx) this.cordx = data.cordx;
-        if (data.cordy) this.cordy = data.cordy;
+        if (data.cordx) this.cordx = new Coord(data.cordx);
+        if (data.cordy) this.cordy = new Coord(data.cordy);
     }
 
     getName() {
