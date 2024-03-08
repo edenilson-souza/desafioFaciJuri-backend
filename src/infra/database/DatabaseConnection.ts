@@ -20,7 +20,6 @@ export class PgPromiseAdapter implements DatabaseConnection {
     }
 
     async close(): Promise<any> {
-        // detalhe traduzido no adapter
         return this.connection.$pool.end();
     }
 }
